@@ -1,0 +1,55 @@
+﻿@model CarRental.Entity.Model.Billing
+@{
+    ViewBag.Title = "Cancel Payment";
+}
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <label class="font-weight-bold">Total Amount Paid : </label>
+        </div>
+        <div class="col-sm-9">
+            <span>@Model.AmountPaid</span>
+        </div>
+        <div class="col-sm-3">
+            <label class="font-weight-bold">Security Deposit : </label>
+        </div>
+        <div class="col-sm-9">
+            <span>@Model.SecurityDeposit</span>
+        </div>
+        <div class="col-sm-3">
+            <label class="font-weight-bold">Cancellation Charges : </label>
+        </div>
+        <div class="col-sm-9">
+            <span>@Model.CancellationCharges</span>
+        </div>
+        <div class="col-sm-3">
+            <label class="font-weight-bold">Processing Fee : </label>
+        </div>
+        <div class="col-sm-9">
+            <span>@Model.ProcessingFee</span>
+        </div>
+        @if (Model.Amount >= 0)
+        {
+            <div class="col-sm-3">
+                <label class="font-weight-bold">Refundable Amount : </label>
+            </div>
+            <div class="col-sm-9">
+                <span>@Model.Amount</span>
+            </div>
+        }
+        else
+        {
+            <div class="col-sm-3">
+                <label class="font-weight-bold">Extra Payment Amount : </label>
+            </div>
+            <div class="col-sm-9">
+                <span>@(Model.Amount * -1)</span>
+            </div>
+        }
+        <div class="col-sm-12">
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("UpdateBookingCancelAndFinal", "Booking", new { DOTS = ViewBag.Booking.DOTS, DOTE = ViewBag.Booking.DOTE, DOB = ViewBag.Booking.DOB, TotalAmount = ViewBag.Booking.TotalAmount, IsDoorDelivery = ViewBag.Booking.IsDoorDelivery, Package = ViewBag.Booking.Package, CustomerId = ViewBag.Booking.CustomerId, CarId = ViewBag.Booking.CarId, HandOverDate = ViewBag.Booking.HandOverDate, DistanceTraveled = ViewBag.Booking.DistanceTraveled, BookingId=ViewBag.Booking.BookingId, name="Canceled successfully!" })'">Confirm Cancel</button>
+        </div>
+    </div>
+</div>
+

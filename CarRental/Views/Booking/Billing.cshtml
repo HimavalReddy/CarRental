@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Billing";
+}
+<br />
+<div id="Invalid">
+    @if (ViewBag.Invalid != null)
+    {
+        <span class="text-danger font-weight-bold" id="ErrInvalid">@ViewBag.Invalid</span>
+    }
+</div>
+<from id="BillingForm">
+    <div class="container-fluid">
+        <div class="row">
+            <label class="font-weight-bold form-inline col-sm-4" for="BookingId">Enter Booking Id:</label>&emsp;
+            <input type="text" class="form-control col-sm-4" name="BookingId" value="" id="BookingId" />
+            <div class="col-sm-12"></div>
+            <label class="font-weight-bold form-inline col-sm-4" for="HandDT">Enter Hand Over Date Time:</label>&emsp;
+            <input type="datetime-local" class="form-control col-sm-4" value="" name="HandDT" id="HandDT" />
+            <div class="col-sm-12"></div>
+            <label class="font-weight-bold form-inline col-sm-4" for="DistanceTraveled">Distance Traveled:</label>&emsp;
+            <input type="number" class="form-control col-sm-4" value="" name="DistanceTraveled" id="DistanceTraveled" />
+            <div class="col-sm-12"></div>
+            <div class="offset-sm-5">
+                <button type="submit" class="btn btn-primary" id="BillingFormSubmit">submit</button>
+            </div>
+        </div>
+    </div>
+</from>
+
+<div id="PartialView">
+
+</div>
+
+<script src="~/Scripts/MyScript/Booking.js"></script>

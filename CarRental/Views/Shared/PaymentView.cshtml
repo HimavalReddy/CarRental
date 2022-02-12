@@ -1,0 +1,84 @@
+﻿@model CarRental.Entity.Model.Payment
+
+@{
+    ViewBag.Title = "Payment";
+}
+<div>
+    <h4>Payment</h4>
+    <hr />
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-3">
+                <label class="font-weight-bold">Rental Charges : </label>
+            </div>
+            <div class="col-sm-9">
+                <span>@Html.DisplayFor(model => model.RentalCharges)</span>
+            </div>
+            @if (ViewBag.url == "AddBooking")
+            {
+                <div class="col-sm-3">
+                    <label class="font-weight-bold">Package Charges : </label>
+                </div>
+                <div class="col-sm-9">
+                    <span>@Html.DisplayFor(model => model.PackageCharges)</span>
+                </div>
+                <div class="col-sm-3">
+                    <label class="font-weight-bold">Security Deposit : </label>
+                </div>
+                <div class="col-sm-9">
+                    <span>@Html.DisplayFor(model => model.SecurityDeposit)</span>
+                </div>
+                <div class="col-sm-3">
+                    <label class="font-weight-bold">Door Delivery Charge : </label>
+                </div>
+                <div class="col-sm-9">
+                    <span>@Html.DisplayFor(model => model.DoorDeliveryCharge)</span>
+                </div>
+
+            }
+            else
+            {
+                <div class="col-sm-3">
+                    <label class="font-weight-bold"> Additional Charges : </label>
+                </div>
+                <div class="col-sm-9">
+                    <span>@Html.DisplayFor(model => model.AdditionalCharge)</span>
+                </div>
+            }
+            <div class="col-sm-3">
+                <label class="font-weight-bold"> Tax : </label>
+            </div>
+            <div class="col-sm-9">
+                <span>@Html.DisplayFor(model => model.Tax)</span>
+            </div>
+
+            @if (ViewBag.url != "AddBooking")
+            {
+                <div class="col-sm-3">
+                    <label class="font-weight-bold"> Paid Amount : </label>
+                </div>
+                <div class="col-sm-9">
+                    <span>@Html.DisplayFor(model => model.Paid)</span>
+                </div>
+
+            }
+            <div class="col-sm-3">
+                <label class="font-weight-bold"> Total Payment : </label>
+            </div>
+            <div class="col-sm-9">
+                <span>@Html.DisplayFor(model => model.TotalPay)</span>
+            </div>
+        </div>
+    </div>
+</div>
+<p>
+    @if (ViewBag.url == "AddBooking")
+    {
+        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action(ViewBag.url, "Booking", new { carid = ViewBag.Carid, CarType=ViewBag.SearchObj.CarType ,DoorStep=ViewBag.SearchObj.DoorStep ,Package=ViewBag.SearchObj.Package, Drop = ViewBag.SearchObj.Drop, Pick = ViewBag.SearchObj.Pick, TotalPay = Html.DisplayFor(model => model.TotalPay)})'">confirm to pay</button>
+    }
+    else
+    {
+        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action(ViewBag.url, "Booking", new { DOTS = ViewBag.Booking.DOTS, DOTE = ViewBag.Booking.DOTE, DOB = DateTime.Now, TotalAmount = ViewBag.Booking.TotalAmount, IsDoorDelivery = ViewBag.Booking.IsDoorDelivery, Package = ViewBag.Booking.Package, CustomerId = ViewBag.Booking.CustomerId, CarId = ViewBag.Booking.CarId, HandOverDate = ViewBag.Booking.HandOverDate, DistanceTraveled = ViewBag.Booking.DistanceTraveled, BookingId=ViewBag.Booking.BookingId })'">confirm to pay</button>
+    }
+</p>

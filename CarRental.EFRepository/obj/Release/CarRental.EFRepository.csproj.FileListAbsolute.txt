@@ -1,0 +1,16 @@
+D:\C#\CarRental\CarRental.EFRepository\bin\Release\CarRental.EFRepository.dll.config
+D:\C#\CarRental\CarRental.EFRepository\bin\Release\CarRental.EFRepository.dll
+D:\C#\CarRental\CarRental.EFRepository\bin\Release\CarRental.EFRepository.pdb
+D:\C#\CarRental\CarRental.EFRepository\bin\Release\CarRental.Entity.dll
+D:\C#\CarRental\CarRental.EFRepository\bin\Release\EntityFramework.dll
+D:\C#\CarRental\CarRental.EFRepository\bin\Release\EntityFramework.SqlServer.dll
+D:\C#\CarRental\CarRental.EFRepository\bin\Release\CarRental.Entity.pdb
+D:\C#\CarRental\CarRental.EFRepository\bin\Release\EntityFramework.xml
+D:\C#\CarRental\CarRental.EFRepository\bin\Release\EntityFramework.SqlServer.xml
+D:\C#\CarRental\CarRental.EFRepository\obj\Release\CarRental.EFRepository.csprojResolveAssemblyReference.cache
+D:\C#\CarRental\CarRental.EFRepository\obj\Release\CarRental.EFRepository.Migrations.InitialCreate.resources
+D:\C#\CarRental\CarRental.EFRepository\obj\Release\CarRental.EFRepository.Migrations.first.resources
+D:\C#\CarRental\CarRental.EFRepository\obj\Release\CarRental.EFRepository.Migrations.key.resources
+D:\C#\CarRental\CarRental.EFRepository\obj\Release\CarRental.EFRepository.csproj.GenerateResource.Cache
+D:\C#\CarRental\CarRental.EFRepository\obj\Release\CarRental.EFRepository.dll
+D:\C#\CarRental\CarRental.EFRepository\obj\Release\CarRental.EFRepository.pdb

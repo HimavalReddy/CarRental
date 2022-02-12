@@ -1,0 +1,176 @@
+﻿@model IEnumerable<CarRental.Entity.Booking>
+@using System.Xml.Linq
+@{
+    ViewBag.Title = "BookingView";
+    int Index = 1;
+}
+<br />
+<h3>All Bookings</h3>
+@if (Model.Count() != 0)
+{
+    <h4>Upcoming And On Going Bookings</h4>
+    if (Model.Where(item => (item.DOTE - DateTime.Now).TotalHours >= 0).Count() == 0)
+    {
+        <span class="text-warning text-center font-weight-bold">There are no Upcoming or On Going Bookings</span>
+    }
+    else
+    {
+        <table class="table" id="UserBooking">
+            <tr>
+                <th class="text-center">
+                    S.No
+                </th>
+                <th class="text-center">
+                    BookingId
+                </th>
+                <th class="text-center">
+                    PickUp Date & Time
+                </th>
+                <th class="text-center">
+                    DropOf Date & Time
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Package)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.IsDoorDelivery)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.TotalAmount)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                if ((item.DOTE - DateTime.Now).TotalHours >= 0)
+                {
+            <tr>
+                <td class="text-center">
+                    @Index
+                </td>
+                <td class="text-center">
+                    CRB@(Html.DisplayFor(modelItem => item.BookingId))Z
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.DOTS)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.DOTE)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Package)
+                </td>
+                <td class="text-center">
+                    @if (item.IsDoorDelivery)
+                            {
+                            <span>Yes</span>
+                            }
+                            else
+                            {
+                            <span>No</span>
+                            }
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.TotalAmount)
+                </td>
+                <td class="text-center">
+                    <button type="button" class="btn btn-light" data-toggle="tooltip" data-placement="top" id="ExtendBooking" title="Extend Booking" onclick="location.href='@Url.Action("ExtendBooking", "Booking", new { BookingId = item.BookingId})'">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button type="button" class="btn btn-light" data-toggle="tooltip" data-placement="top" title="Cancel Booking" onclick="location.href='@Url.Action("CancelBooking", "Booking", new { BookingId = item.BookingId})'">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+                    Index++;
+                }
+            }
+        </table>
+    }
+    <h4>Completed Bookings</h4>
+    if (Model.Where(item => (item.DOTE - DateTime.Now).TotalHours < 0).Count() == 0)
+    {
+        <span class="text-warning text-center font-weight-bold">There are no Completed Bookings</span>
+    }
+    else
+    {
+        <table class="table" id="UserBooking">
+            <tr>
+                <th class="text-center">
+                    S.No
+                </th>
+                <th class="text-center">
+                    BookingId
+                </th>
+                <th class="text-center">
+                    PickUp Date & Time
+                </th>
+                <th class="text-center">
+                    DropOf Date & Time
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Package)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.IsDoorDelivery)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.TotalAmount)
+                </th>
+                <th></th>
+            </tr>
+            @{ Index = 1;}
+            @foreach (var item in Model)
+            {
+                if ((item.DOTE - DateTime.Now).TotalHours < 0)
+                {
+            <tr>
+                <td class="text-center">
+                    @Index
+                </td>
+                <td class="text-center">
+                    CRB@(Html.DisplayFor(modelItem => item.BookingId))Z
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.DOTS)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.DOTE)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Package)
+                </td>
+                <td class="text-center">
+                    @if (item.IsDoorDelivery)
+                            {
+                            <span>Yes</span>
+                            }
+                            else
+                            {
+                            <span>No</span>
+                            }
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.TotalAmount)
+                </td>
+                <td class="text-center">
+                    @*<button type="button" class="btn btn-light" data-toggle="tooltip" data-placement="top" id="ExtendBooking" title="Extend Booking" onclick="location.href='@Url.Action("ExtendBooking", "Booking", new { BookingId = item.BookingId})'">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button type="button" class="btn btn-light" data-toggle="tooltip" data-placement="top" title="Cancel Booking" onclick="location.href='@Url.Action("CancelBooking", "Booking", new { BookingId = item.BookingId})'">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>*@
+                </td>
+            </tr>
+                    Index++;
+                }
+            }
+
+        </table>
+                    }
+                }
+                else
+                {
+                    <span class="text-warning font-weight-bold">There are no Bookings to Show</span>
+                }

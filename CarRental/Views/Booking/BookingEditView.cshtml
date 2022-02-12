@@ -1,0 +1,104 @@
+﻿@model CarRental.Entity.Booking
+
+@{
+    ViewBag.Title = "Trip Extension";
+    DateTime today = new DateTime();
+    today = Model.DOTE;
+    var himaval = today.Year + "-0" + today.Month + "-" + today.Day;
+}
+@using (Html.BeginForm("UpdateBookingconfirm", "Booking", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    if (ViewBag.Bookingerror != null)
+    {
+        <span>@ViewBag.Bookingerror</span>
+    }
+    <div class="form-horizontal">
+        <h4>Trip Extension</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.BookingId)
+        @Html.HiddenFor(model => model.CarId)
+        @Html.HiddenFor(model => model.CustomerId)
+        @Html.HiddenFor(model => model.DistanceTraveled)
+        @Html.HiddenFor(model => model.DOB)
+        @Html.HiddenFor(model => model.HandOverDate)
+        @Html.HiddenFor(model => model.TotalAmount)
+        @Html.HiddenFor(model => model.Package)
+        @Html.HiddenFor(model => model.IsDoorDelivery)
+        @Html.HiddenFor(model => model.DOTS)
+        @Html.HiddenFor(model => model.DOTE)
+
+        @if(ViewBag.UpdateBookingError != null)
+        {
+            <span class="text-danger font-weight-bold" id="UpdateError">@ViewBag.UpdateBookingError</span>
+        }
+        <div class="form-group">
+            <label class="control-label col-sm-12 font-weight-bold" for="DOTS">Pick Up Date and Time:</label>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.DOTS, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="col-sm-5">
+            <label for="DropDate" class="font-weight-bold">Drop-off Date:</label>
+            <input class="form-group" type="date" name="DropDate" min="@himaval" value="@himaval" id="DropDate"><br>
+        </div>
+        <div class="col-sm-3">
+            <label for="Droptime" class="font-weight-bold">Drop-off time:</label>
+            <select id="Droptime" name="Droptime" class="form-group">
+                @for (int i = 1; i < 13; i++)
+                {
+                    <option value="@i">@i:00</option>
+                }
+            </select>
+        </div>
+        <div class="col-sm-4">
+            &emsp;&emsp;&emsp;<input class="form-check-input font-weight-bold" type="radio" name="hourDrop" id="12timeDropam" value="AM" /><label for="12timeDropam">AM</label> &emsp;
+            <input class="form-check-input font-weight-bold" type="radio" name="hourDrop" id="12timeDroppm" value="PM" checked /><label for="12timeDroppm">PM</label>
+        </div>
+
+        @*<div class="form-group">
+            <label class="control-label col-sm-12 font-weight-bold" for="DOTS">Drop Off Date and Time:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DOTE, new { htmlAttributes = new { @class = "form-control"} })
+                @Html.ValidationMessageFor(model => model.DOTE, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Package, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select class="form-group" id="Package" name="Package">
+                    <option value="Unlimited">Unlimited</option>
+                    <option value="limited120">limited 120Km</option>
+                    <option value="limited240">limited 240Km</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.Package, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        @*<div class="form-group form-inline">
+            <div class="">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsDoorDelivery)
+                    @Html.ValidationMessageFor(model => model.IsDoorDelivery, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @Html.LabelFor(model => model.IsDoorDelivery, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script>
+    $("#UpdateError").delay(3000).fadeOut();
+</script>

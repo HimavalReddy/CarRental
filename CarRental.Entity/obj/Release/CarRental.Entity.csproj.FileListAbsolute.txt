@@ -1,0 +1,5 @@
+D:\C#\CarRental\CarRental.Entity\bin\Release\CarRental.Entity.dll
+D:\C#\CarRental\CarRental.Entity\bin\Release\CarRental.Entity.pdb
+D:\C#\CarRental\CarRental.Entity\obj\Release\CarRental.Entity.csprojResolveAssemblyReference.cache
+D:\C#\CarRental\CarRental.Entity\obj\Release\CarRental.Entity.dll
+D:\C#\CarRental\CarRental.Entity\obj\Release\CarRental.Entity.pdb

@@ -1,0 +1,86 @@
+﻿@{
+    DateTime today = new DateTime();
+    today = DateTime.Now;
+    var himaval = today.Year + "-0" + today.Month + "-" + today.Day;
+}
+<br />
+<form id="Searchform">
+    <div class="card text-center">
+        <div class="card-header">
+            Get Your Car
+        </div>
+
+        <div class="card-body">
+            <div>
+                @if (ViewBag.error != null)
+                {
+                    <span class="text-danger font-weight-bold" id="error1">@ViewBag.error</span>
+                }
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <label for="PickUpDate">Pick-up Date:</label>
+                        <input class="form-group" type="date" name="PickDate" min="@himaval" value="@himaval" id="PickUpDate"><br>
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="PickUptime">Pick-up time:</label>
+                        <select id="PickUptime" class="form-group" name="Picktime">
+                            @for (int i = 1; i < 13; i++)
+                            {
+                                <option value="@i">@i:00</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <input class="form-check-input" type="radio" name="hourpick" id="12timePickam" value="AM" checked /><label for="12timePickam">AM</label> &emsp;
+                        <input class="form-check-input" type="radio" name="hourpick" id="12timePickpm" value="PM" /><label for="12timePickpm">PM</label>
+                    </div>
+                    <br />
+                    <div class="col-sm-5">
+                        <label for="DropDate">Drop-off Date:</label>
+                        <input class="form-group" type="date" name="DropDate" min="@himaval" value="@himaval" id="DropDate"><br>
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="Droptime">Drop-off time:</label>
+                        <select id="Droptime" name="Droptime" class="form-group">
+                            @for (int i = 1; i < 13; i++)
+                            {
+                                <option value="@i">@i:00</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <input class="form-check-input" type="radio" name="hourDrop" id="12timeDropam" value="AM" /><label for="12timeDropam">AM</label> &emsp;
+                        <input class="form-check-input" type="radio" name="hourDrop" id="12timeDroppm" value="PM" checked /><label for="12timeDroppm">PM</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="CarType">Car Type:</label>
+                        <select class="form-group" id="CarType" name="CarType">
+                            <option value="Basic">Basic</option>
+                            <option value="Sedan">Sedan</option>
+                            <option value="SUV">SUV</option>
+                            <option value="Luxury">Luxury</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="Package">Package:</label>
+                        <select class="form-group" id="Package" name="Package">
+                            <option value="Unlimited">Unlimited</option>
+                            <option value="Limited 120Km">limited 120Km</option>
+                            <option value="Limited 240Km">limited 240Km</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-12">
+                        <input class="form-check-input" type="radio" id="DoorStep" name="DoorStep" value="Required" /><label for="DoorStep">Do You Required Door Delivery</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-muted" id="Searchdiv">
+            <button id="Searchbtn" class="btn btn-primary mb-2">Search</button>
+        </div>
+    </div>
+</form>
+
+<script src="~/Scripts/MyScript/Car.js"></script>

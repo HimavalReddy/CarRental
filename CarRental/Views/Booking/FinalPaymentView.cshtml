@@ -1,0 +1,52 @@
+﻿@model CarRental.Entity.Model.Billing
+
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <label class="font-weight-bold">Total Amount Paid : </label>
+        </div>
+        <div class="col-sm-9">
+            <span>@Model.AmountPaid</span>
+        </div>
+        <div class="col-sm-3">
+            <label class="font-weight-bold">Security Deposit : </label>
+        </div>
+        <div class="col-sm-9">
+            <span>@Model.SecurityDeposit</span>
+        </div>
+        <div class="col-sm-3">
+            <label class="font-weight-bold">Additional Time Charges : </label>
+        </div>
+        <div class="col-sm-9">
+            <span>@Model.AdditionalTimeCost</span>
+        </div>
+        <div class="col-sm-3">
+            <label class="font-weight-bold">Additional Distance Charges : </label>
+        </div>
+        <div class="col-sm-9">
+            <span>@Model.AdditionalDistanceCost</span>
+        </div>
+        @if (Model.Amount >= 0)
+        {
+            <div class="col-sm-3">
+                <label class="font-weight-bold">Refundable Amount : </label>
+            </div>
+            <div class="col-sm-9">
+                <span>@Model.Amount</span>
+            </div>
+        }
+        else
+        {
+            <div class="col-sm-3">
+                <label class="font-weight-bold">Extra Payment Amount : </label>
+            </div>
+            <div class="col-sm-9">
+                <span>@(Model.Amount * -1)</span>
+            </div>
+        }
+        <div class="col-sm-12">
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("UpdateBookingCancelAndFinal", "Booking", new { DOTS = ViewBag.Booking.DOTS, DOTE = ViewBag.Booking.DOTE, DOB = DateTime.Now, TotalAmount = ViewBag.Booking.TotalAmount, IsDoorDelivery = ViewBag.Booking.IsDoorDelivery, Package = ViewBag.Booking.Package, CustomerId = ViewBag.Booking.CustomerId, CarId = ViewBag.Booking.CarId, HandOverDate = ViewBag.Booking.HandOverDate, DistanceTraveled = ViewBag.Booking.DistanceTraveled, BookingId=ViewBag.Booking.BookingId, name = "Payment successfully!" })'">Confirm Payment</button>
+        </div>
+    </div>
+</div>

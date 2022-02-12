@@ -1,0 +1,74 @@
+﻿@model IEnumerable<CarRental.Entity.Car>
+@{
+    int index = 1;
+}
+<link href="~/Content/MyStyleSheet.css" rel="stylesheet" />
+@if (Model.Count() != 0)
+{
+    <!-- Modal -->
+    foreach (var item in Model)
+    {
+        <div class="modal fade" id="CarBuyModal@(index)" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">@item.Model</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-sm-12">
+                            <label>Rental Charges : </label><span>@item.RentalCharge </span>
+                        </div>
+                        <div class="col-sm-12">
+                            <label>SecurityDeposit : </label><span>@item.Category.SecurityDeposit </span>
+                        </div>
+                        <div class="col-sm-12">
+                            <strong>Total Payment : <span>@(item.Category.SecurityDeposit + item.RentalCharge)</span></strong>
+                        </div>
+                        <div class="col-sm-12">
+                            <span>(Without Tax)</span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Payment", "Car", new { carid = item.CarId, CarType=ViewBag.SearchObj.CarType ,DoorStep=ViewBag.SearchObj.DoorStep ,Package=ViewBag.SearchObj.Package, Drop = ViewBag.SearchObj.Drop, Pick = ViewBag.SearchObj.Pick })'">Confirm Rent</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        index++;
+    }
+    index = 1;
+    <br />
+    <div class="container-fluid">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="card text-center col-sm-4 mt-1 mr-1 ShadowCard" style="width: 18rem;max-width:32.333333%;">
+                    <img class="card-img-top" src="@item.CarImageUrl" alt="https://cdn.easyterra.com/images/car-placeholder.png">
+                    <div class="card-body">
+                        <h4 class="card-title font-weight-bold">@item.Model</h4>
+                        <p class="card-text">
+                            <div>
+                                <strong> Rental Charges : @Html.DisplayFor(modelItem => item.RentalCharge)</strong>
+                            </div>
+                            <div>
+                                <i class="fas fa-male">&nbsp;</i>@Html.DisplayFor(modelItem => item.Capacity)
+                            </div>
+                        </p>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CarBuyModal@(index)">Rent</button>
+                    </div>
+                </div>
+                index++;
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div class="text-center">
+        <span class="text-warning font-weight-bold">No Car Are Found For Your Search</span>
+    </div>
+}
